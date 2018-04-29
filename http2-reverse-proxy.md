@@ -3,9 +3,11 @@
 # 概述
 
 使用 HTTP/2 协议实现 Web 服务器之间的互相连接，进而支持可以访问其中任何一台 Web 服务器的浏览器都可直接访问位于其他 Web 服务器上的内容，大致原理如下：
+
 ![](http2_reverse_proxy.png)
 
 网络中所有节点都是对等关系，以某个节点 Self 为基准可将网络中的节点分为三类： Entry、 Guest 和 Peer 。其中 Peer 泛指网络中所有的节点， Self、 Entry 和 Guest 都是特殊的 Peer ； Entry 是 Self 加入这个网络的唯一入口，但 Entry 并不是一个固定的节点，它随着网络的变化而动态改变，当 Self 成为初始节点时则 Entry 不存在； Guest 是通过 Self 加入这个网络的节点，它并不是唯一的， Self 可以决定它允许多少个 Guest 通过自身加入网络。
+
 网络中所有节点都提供 HTTP 和 HTTP/2 端口， HTTP 用于外部请求， HTTP/2 用于上述构建网络的过程。
 
 # 目的
